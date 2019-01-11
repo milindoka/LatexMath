@@ -31,22 +31,48 @@ public class MainActivity extends AppCompatActivity
         WebViewRenderer.prepareWebview(w);
         e = (EditText) findViewById(R.id.edit);
 
-        final Button ShowButton = (Button) findViewById(R.id.ShowButton);
-        ShowButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                show();
-                // your handler code here
+
+        final Button showButton = (Button) findViewById(R.id.buttonShow);
+        showButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {   show();
             }
         });
 
-        final Button BackSlashButton = (Button) findViewById(R.id.BackSlashButton);
+        final Button BackSlashButton = (Button) findViewById(R.id.buttonBackslah);
         BackSlashButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            {
-                PushBackSlash();
-                // your handler code here
+            {   Push("\\");
             }
         });
+
+        final Button plusButton = (Button) findViewById(R.id.buttonPlus);
+        plusButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {   Push("+");
+            }
+        });
+        final Button minusButton = (Button) findViewById(R.id.buttonMinus);
+        minusButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {   Push("-");
+            }
+        });
+
+        final Button curlyleftButton = (Button) findViewById(R.id.buttoncurlyleft);
+        curlyleftButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {   Push("{");
+            }
+        });
+
+        final Button curlyrightButton = (Button) findViewById(R.id.buttonCurlyright);
+        curlyrightButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {   Push("}");
+            }
+        });
+
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -135,17 +161,14 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     private void show()
     {
         //WebViewRenderer.renderLatex(w,"\\int (\\sin x dx");
         WebViewRenderer.renderLatex(w,e.getText().toString());
     }
 
-    private void PushBackSlash()
-    {e.getText().insert(e.getSelectionStart(), "\\");
-        //WebViewRenderer.renderLatex(w,"\\int (\\sin x dx");
-        WebViewRenderer.renderLatex(w,e.getText().toString());
+    public void Push(String buttonString)
+    {       e.getText().insert(e.getSelectionStart(), buttonString);
     }
 
 }

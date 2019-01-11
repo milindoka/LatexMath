@@ -25,50 +25,83 @@
         android:scrollbars="none"
         android:textSize="20dp" />
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="2dp" >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="horizontal"
-        android:weightSum="100">
-
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/BackSlashButton"
+            android:id="@+id/buttonShow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="\\" />
-
-        <Button
-            android:id="@+id/CurlyLeftButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="25"
-            android:text="{" />
-
-        <Button
-            android:id="@+id/CurlyRightButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="25"
-            android:text="}" />
-
-        <Button
-            android:id="@+id/ShowButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="25"
+            android:minWidth="0dp"
             android:text="@string/show" />
+
+        <Button
+            android:id="@+id/buttonBackslah"
+            android:layout_width="wrap_content"
+            android:minWidth="0dp"
+            android:layout_height="wrap_content"
+            android:text="   \\   " />
+
+        <Button
+            android:id="@+id/buttoncurlyleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:text="   {   " />
+
+        <Button
+            android:id="@+id/buttonCurlyright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:text="   }   " />
+
+
+        <Button
+            android:id="@+id/buttonPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:text="   +   " />
+
+        <Button
+            android:id="@+id/buttonMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:text="   -   " />
+
+        <Button
+            android:id="@+id/buttonCaret"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:text="   ^   " />
+
+        <Button
+            android:id="@+id/buttonUscore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:text="   _   " />
     </LinearLayout>
 
-
+    </HorizontalScrollView>
 
     <WebView
         android:id="@+id/webview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1" >
+
+    </WebView>
 
 </LinearLayout>
