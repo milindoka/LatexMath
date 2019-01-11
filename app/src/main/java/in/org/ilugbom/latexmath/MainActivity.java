@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.*;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity
@@ -28,6 +29,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         w = (WebView) findViewById(R.id.webview);
         WebViewRenderer.prepareWebview(w);
+        e = (EditText) findViewById(R.id.edit);
+
+        final Button button = (Button) findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                show();
+                // your handler code here
+            }
+        });
 
 
 
@@ -83,7 +93,8 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings)
         {
-            WebViewRenderer.renderLatex(w, "\\int");
+    //        WebViewRenderer.renderLatex(w,e.getText().toString());
+            WebViewRenderer.renderLatex(w,"\\int (\\sin x dx");
             return true;
         }
 
@@ -114,4 +125,12 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+    private void show() {
+        //WebViewRenderer.renderLatex(w,"\\int (\\sin x dx");
+        WebViewRenderer.renderLatex(w,e.getText().toString());
+    }
+
 }
