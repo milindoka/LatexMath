@@ -31,14 +31,22 @@ public class MainActivity extends AppCompatActivity
         WebViewRenderer.prepareWebview(w);
         e = (EditText) findViewById(R.id.edit);
 
-        final Button button = (Button) findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button ShowButton = (Button) findViewById(R.id.ShowButton);
+        ShowButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 show();
                 // your handler code here
             }
         });
 
+        final Button BackSlashButton = (Button) findViewById(R.id.BackSlashButton);
+        BackSlashButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                PushBackSlash();
+                // your handler code here
+            }
+        });
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -128,7 +136,14 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private void show() {
+    private void show()
+    {
+        //WebViewRenderer.renderLatex(w,"\\int (\\sin x dx");
+        WebViewRenderer.renderLatex(w,e.getText().toString());
+    }
+
+    private void PushBackSlash()
+    {e.getText().insert(e.getSelectionStart(), "\\");
         //WebViewRenderer.renderLatex(w,"\\int (\\sin x dx");
         WebViewRenderer.renderLatex(w,e.getText().toString());
     }

@@ -17,7 +17,7 @@
         android:layout_weight="0"
         android:gravity="top"
         android:hint="@string/entertex"
-        android:inputType="textMultiLine|textCapSentences"
+        android:inputType="textMultiLine"
         android:lines="5"
         android:maxLines="10"
         android:minLines="1"
@@ -27,39 +27,40 @@
 
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:orientation="horizontal"
         android:weightSum="100">
 
+
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/BackSlashButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="\\" />
+
+        <Button
+            android:id="@+id/CurlyLeftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="25"
+            android:text="{" />
+
+        <Button
+            android:id="@+id/CurlyRightButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="25"
+            android:text="}" />
+
+        <Button
+            android:id="@+id/ShowButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="25"
             android:text="@string/show" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="25"
-            android:text="@string/clear" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="25"
-            android:text="@string/example" />
-
-        <Button
-            android:id="@+id/bSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="25"
-            android:text="Save EQ" />
     </LinearLayout>
 
 
