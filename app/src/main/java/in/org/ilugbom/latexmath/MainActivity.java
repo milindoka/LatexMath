@@ -12,14 +12,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.*;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private EditText e;
+    private WebView w;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        w = (WebView) findViewById(R.id.webview);
+        WebViewRenderer.prepareWebview(w);
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -50,6 +61,9 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+
+      //  WebViewRenderer.renderLatex(w, e.getText().toString());
+
     }
 
     @Override
@@ -67,7 +81,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
+            WebViewRenderer.renderLatex(w, "\\int");
             return true;
         }
 
