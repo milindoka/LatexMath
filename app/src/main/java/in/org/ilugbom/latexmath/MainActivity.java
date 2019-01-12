@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity
     private EditText e;
     private WebView w;
     Button BackSlashButton;
+    private FileIO fio=new FileIO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity
         w = (WebView) findViewById(R.id.webview);
         WebViewRenderer.prepareWebview(w);
         e = (EditText) findViewById(R.id.edit);
+        fio.SetMA(this);
 
 
         final Button showButton = (Button) findViewById(R.id.buttonShow);
@@ -89,7 +91,39 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+//////Second Button Bar
 
+
+        final Button loadButton = (Button) findViewById(R.id.buttonLoad);
+        loadButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {  fio.OpenFile();
+            }
+        });
+
+        final Button saveButton = (Button) findViewById(R.id.buttonSave);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            { show("save");
+            }
+        });
+
+        final Button nextButton = (Button) findViewById(R.id.buttonNext);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {   show("next");
+            }
+        });
+
+
+        final Button prevButton = (Button) findViewById(R.id.buttonPrev);
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {   show("prev");
+            }
+        });
+
+        ////////////////////////////////////////////
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -173,8 +207,12 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
+
+        fio.SetMA(this);
+
         return true;
-    }
+    }  ///end of oncreate bundle
 
 
     private void show()
@@ -216,11 +254,15 @@ public class MainActivity extends AppCompatActivity
                 }
                 return true;
             }
-        });
+        }); //closing the setOnClickListener method
 
         popup.show();//showing popup menu
     }
-//});//closing the setOnClickListener method
+
+    void show(String msg)
+    {
+        Toast.makeText(MainActivity.this,msg, Toast.LENGTH_SHORT).show();
+    }
 
 
 
