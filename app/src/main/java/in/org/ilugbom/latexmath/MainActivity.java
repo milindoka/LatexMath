@@ -1,6 +1,10 @@
 package in.org.ilugbom.latexmath;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -97,7 +101,8 @@ public class MainActivity extends AppCompatActivity
         final Button loadButton = (Button) findViewById(R.id.buttonLoad);
         loadButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            {  fio.OpenFile();
+            { // fio.OpenFile();
+              onBrowse(v);
             }
         });
 
@@ -264,6 +269,36 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(MainActivity.this,msg, Toast.LENGTH_SHORT).show();
     }
 
+
+    public void onBrowse(View view) {
+        Intent chooseFile;
+        Intent intent;
+        chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
+        chooseFile.addCategory(Intent.CATEGORY_OPENABLE);
+        chooseFile.setType("text/plain");
+        intent = Intent.createChooser(chooseFile, "Choose a file");
+        startActivityForResult(intent, 123);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) return;
+        String path     = "";
+        if(requestCode == 123)
+        {
+            Uri uri = data.getData();
+            String FilePath = getRealPathFromURI(uri); // should the path be here in this string
+            System.out.print("Path  = " + FilePath);
+        }
+    }
+
+    public String getRealPathFromURI(Uri contentUri) {
+        String [] proj      = {MediaStore.Images.Media.DATA};
+        Cursor cursor       = getContentResolver().query( contentUri, proj, null, null,null);
+        if (cursor == null) return null;
+        int column_index    = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
 
 
 }
