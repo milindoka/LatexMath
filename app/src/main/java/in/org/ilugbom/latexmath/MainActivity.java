@@ -49,7 +49,12 @@ public class MainActivity extends AppCompatActivity
                 ShowPopupMenu();
             }
         });
-
+        final Button equalButton = (Button) findViewById(R.id.buttonEqual);
+        equalButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {   Push("=");
+            }
+        });
         final Button plusButton = (Button) findViewById(R.id.buttonPlus);
         plusButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
@@ -60,6 +65,13 @@ public class MainActivity extends AppCompatActivity
         minusButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {   Push("-");
+            }
+        });
+
+        final Button caretButton = (Button) findViewById(R.id.buttonCaret);
+        caretButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {   Push("^");
             }
         });
 
@@ -198,6 +210,8 @@ public class MainActivity extends AppCompatActivity
                                    e.setSelection(e.getSelectionStart()-1); break;
                   case R.id.inte : Push("int  \\;dx");
                                    e.setSelection(e.getSelectionStart()-5); break;
+                    case R.id.limi : Push("lim_{x \\to }");
+                        e.setSelection(e.getSelectionStart()-1); break;
 
                 }
                 return true;

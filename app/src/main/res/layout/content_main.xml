@@ -49,21 +49,12 @@
             android:minWidth="0dp"
             android:layout_height="wrap_content"
             android:text="   \\   " />
-
         <Button
-            android:id="@+id/buttoncurlyleft"
+            android:id="@+id/buttonEqual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="0dp"
-            android:text="   {   " />
-
-        <Button
-            android:id="@+id/buttonCurlyright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="0dp"
-            android:text="   }   " />
-
+            android:text="   =   " />
 
         <Button
             android:id="@+id/buttonPlus"
@@ -85,6 +76,22 @@
             android:layout_height="wrap_content"
             android:minWidth="0dp"
             android:text="   ^   " />
+
+        <Button
+            android:id="@+id/buttoncurlyleft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:text="   {   " />
+
+        <Button
+            android:id="@+id/buttonCurlyright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:text="   }   " />
+
+
 
         <Button
             android:id="@+id/buttonUscore"

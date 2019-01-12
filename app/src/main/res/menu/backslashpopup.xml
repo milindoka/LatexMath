@@ -13,4 +13,8 @@
         android:id="@+id/inte"
         android:title="int"/>
 
+    <item
+        android:id="@+id/limi"
+        android:title="lim"/>
+
 </menu>
