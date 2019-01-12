@@ -15,12 +15,15 @@ import android.view.MenuItem;
 import android.webkit.*;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private EditText e;
     private WebView w;
+    Button BackSlashButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,10 +42,11 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        final Button BackSlashButton = (Button) findViewById(R.id.buttonBackslah);
+        BackSlashButton = (Button) findViewById(R.id.buttonBackslah);
         BackSlashButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {   Push("\\");
+                ShowPopupMenu();
             }
         });
 
@@ -170,5 +174,35 @@ public class MainActivity extends AppCompatActivity
     public void Push(String buttonString)
     {       e.getText().insert(e.getSelectionStart(), buttonString);
     }
+
+
+    void ShowPopupMenu()
+    {
+        //Creating the instance of PopupMenu
+        PopupMenu popup = new PopupMenu(MainActivity.this, BackSlashButton);
+        //Inflating the Popup using xml file
+        popup.getMenuInflater().inflate(R.menu.backslashpopup, popup.getMenu());
+
+        //registering popup with OnMenuItemClickListener
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item)
+            { Toast.makeText(MainActivity.this,"You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                //    Msg.show("Test");
+                int option=item.getItemId();
+                switch(option)
+                { case R.id.one : ; break;
+                    case R.id.two : ; break;
+                    case R.id.three : ; break;
+
+                }
+                return true;
+            }
+        });
+
+        popup.show();//showing popup menu
+    }
+//});//closing the setOnClickListener method
+
+
 
 }
