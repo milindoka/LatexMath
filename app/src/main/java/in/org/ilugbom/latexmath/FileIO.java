@@ -24,7 +24,7 @@ public class FileIO
      void OpenFile()
     {	OpenNow=false;
         List<String> listItems = new ArrayList<String>();
-        File mfile=new File("/sdcard");
+        File mfile=new File("/sdcard/Latex/Samples");
 
 
         File[] list=mfile.listFiles();
@@ -34,7 +34,7 @@ public class FileIO
         {
             tempstr=list[i].getAbsolutePath();
             tempupper=tempstr.toUpperCase();
-            if(tempupper.endsWith(".MRK") )
+            if(tempupper.endsWith(".TEX") )
                 listItems.add(list[i].getAbsolutePath());
         }
 

@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -101,8 +103,8 @@ public class MainActivity extends AppCompatActivity
         final Button loadButton = (Button) findViewById(R.id.buttonLoad);
         loadButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            { // fio.OpenFile();
-              onBrowse(v);
+            { fio.OpenFile();
+
             }
         });
 
