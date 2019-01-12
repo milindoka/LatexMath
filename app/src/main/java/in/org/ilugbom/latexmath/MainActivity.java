@@ -186,13 +186,18 @@ public class MainActivity extends AppCompatActivity
         //registering popup with OnMenuItemClickListener
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item)
-            { Toast.makeText(MainActivity.this,"You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                //    Msg.show("Test");
+            { //Toast.makeText(MainActivity.this,"You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+
                 int option=item.getItemId();
                 switch(option)
-                { case R.id.one : ; break;
-                    case R.id.two : ; break;
-                    case R.id.three : ; break;
+                { case R.id.frac : Push("frac{}{}");
+                                   e.setSelection(e.getSelectionStart()-3); break;
+                  case R.id.text : Push("text{}");
+                                   e.setSelection(e.getSelectionStart()-1); break;
+                  case R.id.sqrt : Push("sqrt{}");
+                                   e.setSelection(e.getSelectionStart()-1); break;
+                  case R.id.inte : Push("int  \\;dx");
+                                   e.setSelection(e.getSelectionStart()-5); break;
 
                 }
                 return true;

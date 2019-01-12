@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/one"
-        android:title="Close and Save Attendance" />
+        android:id="@+id/frac"
+        android:title="frac{}{}" />
     <item
-        android:id="@+id/two"
-        android:title="Continue Attendance"/>
+        android:id="@+id/text"
+        android:title="text{}"/>
     <item
-        android:id="@+id/three"
+        android:id="@+id/sqrt"
+        android:title="sqrt{}"/>
+    <item
+        android:id="@+id/inte"
+        android:title="int"/>
 
-        android:title="Discard Attendnce"/>
 </menu>
