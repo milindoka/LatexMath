@@ -68,7 +68,7 @@ public class FileIO
         txtData+="\\usepackage{amsmath}"; txtData+='\n'; // collegename2
         txtData+="\\begin{document}\n\n";
 
-        txtData+="\\int Sin x dx";
+        txtData+=MA.e.getText();
 
         txtData+="\n\n\\end{document}\n\n";
 

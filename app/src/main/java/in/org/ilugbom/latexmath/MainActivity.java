@@ -27,7 +27,7 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private EditText e;
+    EditText e;
     private WebView w;
     Button BackSlashButton;
     private FileIO fio=new FileIO();
