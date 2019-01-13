@@ -111,7 +111,8 @@ public class MainActivity extends AppCompatActivity
         final Button saveButton = (Button) findViewById(R.id.buttonSave);
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            { show("save");
+            {// show("save");
+                fio.SaveFile();
             }
         });
 
