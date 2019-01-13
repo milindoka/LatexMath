@@ -3,8 +3,11 @@ package in.org.ilugbom.latexmath;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +93,48 @@ public class FileIO
         }
       //  if(end) finish();
     }
+
+
+    void OpenList(String fylenamewithpath)
+    { int i;
+        String temp2;
+        try
+        {
+
+            File myFile = new File(fylenamewithpath);
+            FileInputStream fIn = new FileInputStream(myFile);
+            BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
+            String aDataRow = "";
+            String[] temp;
+            MA.e.setText("");
+            i=0;
+            while ((aDataRow = myReader.readLine()) != null)
+
+            { MA.e.append(aDataRow);
+                i++;
+            }
+            myReader.close();
+            String FileNameWithPath=fylenamewithpath;
+            int start=fylenamewithpath.lastIndexOf("/");
+
+            String tempfname=fylenamewithpath.substring(start+1);
+
+           // final TextView myTitleText = (TextView) findViewById(R.id.ttext);
+           // if (myTitleText != null)
+           //     myTitleText.setText(tempfname);
+           // showtop(tempfname);
+            MA.show("Loaded From SD Card");
+        }
+        catch (Exception e)
+        {
+            MA.show(e.getMessage());
+        }
+
+        modified=false;
+
+    }
+
+
 
 
 

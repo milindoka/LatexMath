@@ -103,7 +103,9 @@ public class MainActivity extends AppCompatActivity
         final Button loadButton = (Button) findViewById(R.id.buttonLoad);
         loadButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            { fio.OpenFile();
+            {
+
+                fio.OpenList("/sdcard/test.tex");
 
             }
         });
