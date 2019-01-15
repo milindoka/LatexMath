@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity
     private WebView w;
     Button BackSlashButton;
     private FileIO fio=new FileIO();
+    int QN=0;
+    String[] QnArray;
 
 
     @Override
@@ -122,8 +124,9 @@ public class MainActivity extends AppCompatActivity
         final Button nextButton = (Button) findViewById(R.id.buttonNext);
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            {   show("next");
-
+            {   QN++;
+                e.setText("");
+                e.setText(QnArray[QN]);
             }
         });
 
@@ -131,7 +134,11 @@ public class MainActivity extends AppCompatActivity
         final Button prevButton = (Button) findViewById(R.id.buttonPrev);
         prevButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            {   show("prev");
+            {
+                QN--;
+                e.setText("");
+                e.setText(QnArray[QN]);
+
             }
         });
 

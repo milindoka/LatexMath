@@ -67,16 +67,15 @@ public class FileIO
         modified=false;
         String tmpStr;
         String txtData = "\n";
-        txtData+="\\documentclass[14pt]{extarticle}"; txtData+="\r\n";
+        txtData+="\\documentclass[14pt]{extarticle}"; txtData+='\n';
         txtData+="\\usepackage{amsmath}"; txtData+='\n';
-        txtData+="\\begin{document}"; txtData+="\r\n";
-        txtData+="\\begin{document}"; txtData+="\r\n";
-        txtData+="\\begin{document}"; txtData+="\r\n";
+        txtData+="\\begin{document}"; txtData+="\n\n";
+        txtData+="\\section{Question}"; txtData+='\n';
 
 
         txtData+=MA.e.getText().toString();
 
-        txtData+="\n\n\\end{document}\n\n";
+        txtData+="\n\n\\end{document}\n";
 
 
         try {
@@ -108,7 +107,8 @@ public class FileIO
             FileInputStream fIn = new FileInputStream(myFile);
             BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
             String aDataRow = "";
-          //  String[] temp;
+            String[] temp;
+
             MA.e.setText("");
 
             while ((aDataRow = myReader.readLine()) != null)
@@ -116,8 +116,15 @@ public class FileIO
             { temp1+=aDataRow;temp1+='\n';
 
             }
+
+
+
+
             myReader.close();
-            MA.e.setText(temp1);
+
+            MA.QnArray=temp1.split("section\\{Question\\}");
+
+            MA.e.setText(MA.QnArray[0]);
 
            /*
             String FileNameWithPath=fylenamewithpath;
