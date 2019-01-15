@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     Button BackSlashButton;
     private FileIO fio=new FileIO();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -122,6 +123,7 @@ public class MainActivity extends AppCompatActivity
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {   show("next");
+
             }
         });
 

@@ -67,11 +67,14 @@ public class FileIO
         modified=false;
         String tmpStr;
         String txtData = "\n";
-        txtData+="\\documentclass[14pt]{extarticle}"; txtData+='\n';
-        txtData+="\\usepackage{amsmath}"; txtData+='\n'; // collegename2
-        txtData+="\\begin{document}\n\n";
+        txtData+="\\documentclass[14pt]{extarticle}"; txtData+="\r\n";
+        txtData+="\\usepackage{amsmath}"; txtData+='\n';
+        txtData+="\\begin{document}"; txtData+="\r\n";
+        txtData+="\\begin{document}"; txtData+="\r\n";
+        txtData+="\\begin{document}"; txtData+="\r\n";
 
-        txtData+=MA.e.getText();
+
+        txtData+=MA.e.getText().toString();
 
         txtData+="\n\n\\end{document}\n\n";
 
@@ -97,7 +100,7 @@ public class FileIO
 
     void OpenList(String fylenamewithpath)
     { int i;
-        String temp2;
+        String temp1="",temp2;
         try
         {
 
@@ -105,24 +108,27 @@ public class FileIO
             FileInputStream fIn = new FileInputStream(myFile);
             BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
             String aDataRow = "";
-            String[] temp;
+          //  String[] temp;
             MA.e.setText("");
-            i=0;
+
             while ((aDataRow = myReader.readLine()) != null)
 
-            { MA.e.append(aDataRow);
-                i++;
+            { temp1+=aDataRow;temp1+='\n';
+
             }
             myReader.close();
+            MA.e.setText(temp1);
+
+           /*
             String FileNameWithPath=fylenamewithpath;
             int start=fylenamewithpath.lastIndexOf("/");
 
             String tempfname=fylenamewithpath.substring(start+1);
-
-           // final TextView myTitleText = (TextView) findViewById(R.id.ttext);
-           // if (myTitleText != null)
-           //     myTitleText.setText(tempfname);
-           // showtop(tempfname);
+            final TextView myTitleText = (TextView) findViewById(R.id.ttext);
+            if (myTitleText != null)
+             myTitleText.setText(tempfname);
+             showtop(tempfname);
+           */
             MA.show("Loaded From SD Card");
         }
         catch (Exception e)
