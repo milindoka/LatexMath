@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
     private WebView w;
     Button BackSlashButton;
     private FileIO fio=new FileIO();
-    int QN=0;
+    int QN=1;
     ArrayList<String> QnArray = new ArrayList<String>(); // Create an ArrayList object
 
 
@@ -125,11 +125,11 @@ public class MainActivity extends AppCompatActivity
         final Button nextButton = (Button) findViewById(R.id.buttonNext);
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            {
-
+            {  //show(String.format("%d",QN));
+               // show(String.format("%d",QnArray.size()));
                 String temp = e.getText().toString();
 
-                if(QN==QnArray.size()){
+                if(QN==QnArray.size()+1){
 
                                         if (temp.length() == 0) {  show("No more Questions");
                                                                     return;
@@ -140,11 +140,14 @@ public class MainActivity extends AppCompatActivity
                                         return;
                                        }
 
-                if(QN<QnArray.size()) {
-                    QnArray.set(QN,temp);
+
+                    QnArray.set(QN-1,temp);
                     QN++;  ///since this is not last empty question
-                    e.setText(QnArray.get(QN-1).toString());
-                }
+                    if(QN==QnArray.size()+1) e.setText("");
+                    else e.setText(QnArray.get(QN-1).toString());
+                //show(String.format("QN=%d Size=%d",QN,QnArray.size()));
+                //show(String.format("%d",QnArray.size()));
+
             }
         });
 
@@ -152,14 +155,24 @@ public class MainActivity extends AppCompatActivity
         final Button prevButton = (Button) findViewById(R.id.buttonPrev);
         prevButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            {
+            { //show(String.format("%d",QN));
+              //  show(String.format("%d",QnArray.size()));
+                if(QN==1) return;  //first question cannot go back
+                //otherwise get content
                 String temp=e.getText().toString();
-                if(QN==QnArray.size())
-                        { if(temp.length()!=0) QnArray.add(temp); }
-                if(QN>0)  QN--; else return;
+                //
 
-                e.setText(QnArray.get(QN).toString());
+                  if(QN==QnArray.size()+1) //  last question
+                  { if(temp.length()!=0)
+                      QnArray.add(temp); // then it is to be appended to array
+                   }
+                 else
+                  {QnArray.set(QN - 1, temp);}
 
+                  QN--;
+                  e.setText(QnArray.get(QN - 1).toString());
+               //   show(String.format("QN=%d Size=%d",QN,QnArray.size()));
+ //               show(String.format("%d",QnArray.size()));
             }
         });
 
