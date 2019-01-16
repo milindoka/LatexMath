@@ -23,6 +23,7 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity
     Button BackSlashButton;
     private FileIO fio=new FileIO();
     int QN=0;
-    String[] QnArray;
+    ArrayList<String> QnArray = new ArrayList<String>(); // Create an ArrayList object
 
 
     @Override
@@ -124,9 +125,26 @@ public class MainActivity extends AppCompatActivity
         final Button nextButton = (Button) findViewById(R.id.buttonNext);
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            {   QN++;
-                e.setText("");
-                e.setText(QnArray[QN]);
+            {
+
+                String temp = e.getText().toString();
+
+                if(QN==QnArray.size()){
+
+                                        if (temp.length() == 0) {  show("No more Questions");
+                                                                    return;
+                                                                }
+                                        QnArray.add(temp);
+                                        QN++;
+                                        e.setText("");
+                                        return;
+                                       }
+
+                if(QN<QnArray.size()) {
+                    QnArray.set(QN,temp);
+                    QN++;  ///since this is not last empty question
+                    e.setText(QnArray.get(QN-1).toString());
+                }
             }
         });
 
@@ -135,9 +153,12 @@ public class MainActivity extends AppCompatActivity
         prevButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                QN--;
-                e.setText("");
-                e.setText(QnArray[QN]);
+                String temp=e.getText().toString();
+                if(QN==QnArray.size())
+                        { if(temp.length()!=0) QnArray.add(temp); }
+                if(QN>0)  QN--; else return;
+
+                e.setText(QnArray.get(QN).toString());
 
             }
         });

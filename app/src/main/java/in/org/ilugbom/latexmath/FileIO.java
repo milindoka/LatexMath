@@ -122,9 +122,9 @@ public class FileIO
 
             myReader.close();
 
-            MA.QnArray=temp1.split("section\\{Question\\}");
+         //   MA.QnArray=temp1.split("section\\{Question\\}");
 
-            MA.e.setText(MA.QnArray[0]);
+        //    MA.e.setText(MA.QnArray[0]);
 
            /*
             String FileNameWithPath=fylenamewithpath;
