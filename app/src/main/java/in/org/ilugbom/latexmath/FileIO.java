@@ -70,10 +70,19 @@ public class FileIO
         txtData+="\\documentclass[14pt]{extarticle}"; txtData+='\n';
         txtData+="\\usepackage{amsmath}"; txtData+='\n';
         txtData+="\\begin{document}"; txtData+="\n\n";
+
+
         txtData+="\\section{Question}"; txtData+='\n';
+            int size=MA.QnArray.size();
+            if(size>0)
+            {for(int i=0;i<size;i++)
+                {
+                    txtData+="\\section{Question}"; txtData+='\n';
+                    txtData+=MA.QnArray.get(i); txtData+='\n';
+                }
 
+            }
 
-        txtData+=MA.e.getText().toString();
 
         txtData+="\n\n\\end{document}\n";
 
@@ -98,7 +107,7 @@ public class FileIO
 
 
     void OpenList(String fylenamewithpath)
-    { int i;
+    { int i; String temp[];
         String temp1="",temp2;
         try
         {
@@ -107,7 +116,6 @@ public class FileIO
             FileInputStream fIn = new FileInputStream(myFile);
             BufferedReader myReader = new BufferedReader(new InputStreamReader(fIn));
             String aDataRow = "";
-            String[] temp;
 
             MA.e.setText("");
 
@@ -117,12 +125,12 @@ public class FileIO
 
             }
 
-
-
-
             myReader.close();
 
-         //   MA.QnArray=temp1.split("section\\{Question\\}");
+            temp=temp1.split("section\\{Question\\}");
+
+            for(i=0;i<temp.length;i++)
+                MA.QnArray.add(temp[i]);
 
         //    MA.e.setText(MA.QnArray[0]);
 

@@ -108,9 +108,10 @@ public class MainActivity extends AppCompatActivity
         loadButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-
+                QN=1;
+                QnArray.removeAll(QnArray);
                 fio.OpenList("/sdcard/test.tex");
-
+                e.setText(QnArray.get(0));
             }
         });
 
