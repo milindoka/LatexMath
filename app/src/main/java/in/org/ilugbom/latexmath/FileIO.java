@@ -72,7 +72,7 @@ public class FileIO
         txtData+="\\begin{document}"; txtData+="\n\n";
 
 
-        txtData+="\\section{Question}"; txtData+='\n';
+        //txtData+="\\section{Question}"; txtData+='\n';
             int size=MA.QnArray.size();
             if(size>0)
             {for(int i=0;i<size;i++)
@@ -122,7 +122,14 @@ public class FileIO
 
             while ((aDataRow = myReader.readLine()) != null)
 
-            { temp1+=aDataRow;
+            {   if(aDataRow.contains("\\begin{document}")) break;
+               // temp1+=aDataRow;
+
+            }
+            while ((aDataRow = myReader.readLine()) != null)
+
+            {   if(aDataRow.contains("\\end{document}")) break;
+                temp1+=aDataRow;
 
             }
 
