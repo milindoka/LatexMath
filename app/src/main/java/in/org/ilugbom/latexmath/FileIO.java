@@ -77,8 +77,9 @@ public class FileIO
             if(size>0)
             {for(int i=0;i<size;i++)
                 {
-                    txtData+="\\section{Question}"; txtData+='\n';
+
                     txtData+=MA.QnArray.get(i); txtData+='\n';
+                    txtData+="\\section{Question}"; txtData+='\n';
                 }
 
             }
@@ -121,13 +122,13 @@ public class FileIO
 
             while ((aDataRow = myReader.readLine()) != null)
 
-            { temp1+=aDataRow;temp1+='\n';
+            { temp1+=aDataRow;
 
             }
 
             myReader.close();
 
-            temp=temp1.split("section\\{Question\\}");
+            temp=temp1.split("\\\\section\\{Question\\}");
 
             for(i=0;i<temp.length;i++)
                 MA.QnArray.add(temp[i]);
