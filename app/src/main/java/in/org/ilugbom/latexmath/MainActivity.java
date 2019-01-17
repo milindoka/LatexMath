@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity
                 QnArray.removeAll(QnArray);
                 fio.OpenList("/sdcard/test.tex");
                 e.setText(QnArray.get(0));
+                show();
             }
         });
 
@@ -146,9 +147,7 @@ public class MainActivity extends AppCompatActivity
                     QN++;  ///since this is not last empty question
                     if(QN==QnArray.size()+1) e.setText("");
                     else e.setText(QnArray.get(QN-1).toString());
-                //show(String.format("QN=%d Size=%d",QN,QnArray.size()));
-                //show(String.format("%d",QnArray.size()));
-
+                    show();
             }
         });
 
@@ -172,8 +171,8 @@ public class MainActivity extends AppCompatActivity
 
                   QN--;
                   e.setText(QnArray.get(QN - 1).toString());
-               //   show(String.format("QN=%d Size=%d",QN,QnArray.size()));
- //               show(String.format("%d",QnArray.size()));
+
+                  show();
             }
         });
 
