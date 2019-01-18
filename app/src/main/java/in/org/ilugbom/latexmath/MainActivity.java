@@ -47,6 +47,27 @@ public class MainActivity extends AppCompatActivity
         fio.SetMA(this);
 
 
+
+         w.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
+            public void onSwipeTop() {
+                Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeRight() {
+                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+            }
+            public void onSwipeLeft() {
+               // Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+            OnNext();
+            }
+            public void onSwipeBottom() {
+                Toast.makeText(MainActivity.this, "bottom", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+
+
+
         final Button showButton = (Button) findViewById(R.id.buttonShow);
         showButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
@@ -127,27 +148,7 @@ public class MainActivity extends AppCompatActivity
         final Button nextButton = (Button) findViewById(R.id.buttonNext);
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            {  //show(String.format("%d",QN));
-               // show(String.format("%d",QnArray.size()));
-                String temp = e.getText().toString();
-
-                if(QN==QnArray.size()+1){
-
-                                        if (temp.length() == 0) {  show("No more Questions");
-                                                                    return;
-                                                                }
-                                        QnArray.add(temp);
-                                        QN++;
-                                        e.setText("");
-                                        return;
-                                       }
-
-
-                    QnArray.set(QN-1,temp);
-                    QN++;  ///since this is not last empty question
-                    if(QN==QnArray.size()+1) e.setText("");
-                    else e.setText(QnArray.get(QN-1).toString());
-                    show();
+            {  OnNext();
             }
         });
 
@@ -346,6 +347,31 @@ public class MainActivity extends AppCompatActivity
         int column_index    = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
         return cursor.getString(column_index);
+    }
+
+
+    void OnNext()
+    {
+
+        String temp = e.getText().toString();
+
+        if(QN==QnArray.size()+1){
+
+            if (temp.length() == 0) {  show("No more Questions");
+                return;
+            }
+            QnArray.add(temp);
+            QN++;
+            e.setText("");
+            return;
+        }
+
+
+        QnArray.set(QN-1,temp);
+        QN++;  ///since this is not last empty question
+        if(QN==QnArray.size()+1) e.setText("");
+        else e.setText(QnArray.get(QN-1).toString());
+        show();
     }
 
 
