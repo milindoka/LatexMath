@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -34,7 +35,9 @@ public class MainActivity extends AppCompatActivity
     private FileIO fio=new FileIO();
     int QN=1;
     ArrayList<String> QnArray = new ArrayList<String>(); // Create an ArrayList object
-
+    ArrayList<String> AnArray = new ArrayList<String>(); // Create an ArrayList object
+    FloatingActionButton fab;
+    boolean QnMode=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -171,14 +174,52 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        fab.setOnTouchListener(new View.OnTouchListener() {
+
+
+            float x, y;
+            float x1,y1;
+            float x2,y2;
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction())
+                {   case MotionEvent.ACTION_UP :
+                    if(Math.abs(x2-x1)<10 && Math.abs(y2-y1)<10)
+
+                    {
+                      //  OnFloatingButton();
+                    }
+
+                    return true;
+                    case MotionEvent.ACTION_MOVE:
+
+                        x2=fab.getX()+event.getX()-x; y2=fab.getY()+event.getY()-y;
+
+                        fab.setX(x2);
+                        fab.setY(y2);
+                        return true;
+                    case MotionEvent.ACTION_DOWN:
+                        x = event.getX();
+                        y = event.getY();
+                        x1=fab.getX()+event.getX()-x; y1=fab.getY()+event.getY()-y;
+                        x2=fab.getX();y2=fab.getY();
+                        //   x1=x;
+                        //  y1=y;
+                        //   Msg.show(String.format("%d",event.getX()));
+                        return true;
+                }
+
+                return false;
             }
         });
+
+
+
+
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
