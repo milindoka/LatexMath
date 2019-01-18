@@ -21,6 +21,7 @@ import android.webkit.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     ArrayList<String> QnArray = new ArrayList<String>(); // Create an ArrayList object
     ArrayList<String> AnArray = new ArrayList<String>(); // Create an ArrayList object
     FloatingActionButton fab;
+    private TextView FC; ///to set tex on fab
     boolean QnMode=true;
 
     @Override
@@ -175,7 +177,8 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
-
+        FC=(TextView) findViewById(R.id.FabText); ///To display text on FAB
+        FC.setText("Q");
         fab.setOnTouchListener(new View.OnTouchListener() {
 
 
@@ -188,8 +191,17 @@ public class MainActivity extends AppCompatActivity
                 {   case MotionEvent.ACTION_UP :
                     if(Math.abs(x2-x1)<10 && Math.abs(y2-y1)<10)
 
-                    {
-                      //  OnFloatingButton();
+                    {if(QnMode) {
+                        fab.setBackgroundTintList(getResources().getColorStateList(R.color.colorGreen));
+                        FC.setText("A");
+                        QnMode=false; //Answer mode is set
+                    }
+                    else {
+                        fab.setBackgroundTintList(getResources().getColorStateList(R.color.colorPink));
+                        FC.setText("Q");
+                        QnMode=true; //Question mode is set
+                        }
+
                     }
 
                     return true;
