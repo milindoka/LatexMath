@@ -115,31 +115,31 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonLoad"
+                android:id="@+id/buttonBracket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"
-                android:text="Load" />
+                android:text="( )" />
 
             <Button
-                android:id="@+id/buttonSave"
+                android:id="@+id/buttonTrig"
                 android:layout_width="wrap_content"
                 android:minWidth="0dp"
                 android:layout_height="wrap_content"
-                android:text="Save" />
+                android:text="Trig" />
             <Button
-                android:id="@+id/buttonNext"
+                android:id="@+id/buttonMatrix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"
-                android:text="Next" />
+                android:text=" M " />
 
             <Button
-                android:id="@+id/buttonPrev"
+                android:id="@+id/buttonCases"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"
-                android:text="Prev" />
+                android:text=" ={ " />
 
         </LinearLayout>
 

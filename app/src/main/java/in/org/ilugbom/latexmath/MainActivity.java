@@ -50,17 +50,17 @@ public class MainActivity extends AppCompatActivity
 
          w.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
             public void onSwipeTop() {
-                Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
             }
             public void onSwipeRight() {
-                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                OnPrev();
             }
             public void onSwipeLeft() {
                // Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
             OnNext();
             }
             public void onSwipeBottom() {
-                Toast.makeText(MainActivity.this, "bottom", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "bottom", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -125,55 +125,44 @@ public class MainActivity extends AppCompatActivity
 //////Second Button Bar
 
 
-        final Button loadButton = (Button) findViewById(R.id.buttonLoad);
-        loadButton.setOnClickListener(new View.OnClickListener() {
+        final Button bracketButton = (Button) findViewById(R.id.buttonBracket);
+        bracketButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                QN=1;
-                QnArray.removeAll(QnArray);
-                fio.OpenList("/sdcard/test.tex");
-                e.setText(QnArray.get(0));
-                show();
+                Push("\\left( \\right)");
+                e.setSelection(e.getSelectionStart()-7);
             }
         });
 
-        final Button saveButton = (Button) findViewById(R.id.buttonSave);
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        final Button trigButton = (Button) findViewById(R.id.buttonTrig);
+        trigButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            {// show("save");
-                fio.SaveFile();
+            {Push("\\sin ");
+
             }
         });
 
-        final Button nextButton = (Button) findViewById(R.id.buttonNext);
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        final Button matrixButton = (Button) findViewById(R.id.buttonMatrix);
+        matrixButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            {  OnNext();
+            { Push("\\begin{bmatrix}\n"+
+                               "1 & 2 & 3 \\\\ \n"+
+                               "4 & 5 & 6 \\\\ \n"+
+                               "7 & 8 & 9 \n"+
+                               "\\end{bmatrix}\n");
+            show();
             }
         });
 
 
-        final Button prevButton = (Button) findViewById(R.id.buttonPrev);
-        prevButton.setOnClickListener(new View.OnClickListener() {
+        final Button casesButton = (Button) findViewById(R.id.buttonCases);
+        casesButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            { //show(String.format("%d",QN));
-              //  show(String.format("%d",QnArray.size()));
-                if(QN==1) return;  //first question cannot go back
-                //otherwise get content
-                String temp=e.getText().toString();
-                //
-
-                  if(QN==QnArray.size()+1) //  last question
-                  { if(temp.length()!=0)
-                      QnArray.add(temp); // then it is to be appended to array
-                   }
-                 else
-                  {QnArray.set(QN - 1, temp);}
-
-                  QN--;
-                  e.setText(QnArray.get(QN - 1).toString());
-
-                  show();
+            {
+                Push("f(n) = \\begin{cases}\n"+
+                      " \\frac{n}{2},  & \\text{if $n$ is even} \\\\[2ex]\n"+
+                       "3n+1, & \\text{if $n$ is odd}\n"+
+                        "\\end{cases}\n");
             }
         });
 
@@ -231,8 +220,17 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings)
         {
-    //        WebViewRenderer.renderLatex(w,e.getText().toString());
-            WebViewRenderer.renderLatex(w,"\\int (\\sin x dx");
+            show("Settings");
+            return true;
+        }
+        else if (id == R.id.action_load)
+            {
+                OnLoad();
+                return true;
+            }
+        else if (id == R.id.action_save)
+        {
+            OnSave();
             return true;
         }
 
@@ -294,8 +292,8 @@ public class MainActivity extends AppCompatActivity
 
                 int option=item.getItemId();
                 switch(option)
-                { case R.id.frac : Push("frac{}{}");
-                                   e.setSelection(e.getSelectionStart()-3); break;
+                { case R.id.frac : Push("frac{}{ }");
+                                   e.setSelection(e.getSelectionStart()-4); break;
                   case R.id.text : Push("text{}");
                                    e.setSelection(e.getSelectionStart()-1); break;
                   case R.id.sqrt : Push("sqrt{}");
@@ -374,5 +372,42 @@ public class MainActivity extends AppCompatActivity
         show();
     }
 
+    void OnPrev()
+    {
+        //show(String.format("%d",QN));
+        //  show(String.format("%d",QnArray.size()));
+        if(QN==1) return;  //first question cannot go back
+        //otherwise get content
+        String temp=e.getText().toString();
+        //
+
+        if(QN==QnArray.size()+1) //  last question
+        { if(temp.length()!=0)
+            QnArray.add(temp); // then it is to be appended to array
+        }
+        else
+        {QnArray.set(QN - 1, temp);}
+
+        QN--;
+        e.setText(QnArray.get(QN - 1).toString());
+
+        show();
+    }
+
+
+    void OnLoad()
+    {
+        QN=1;
+        QnArray.removeAll(QnArray);
+        fio.OpenList("/sdcard/test.tex");
+        e.setText(QnArray.get(0));
+        show();
+    }
+
+
+    void OnSave()
+    {
+        fio.SaveFile();
+    }
 
 }
