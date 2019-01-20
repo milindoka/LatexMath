@@ -25,6 +25,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codekidlabs.storagechooser.StorageChooser;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton fab;
     private TextView FC; ///to set tex on fab
     boolean QnMode = true;
+    //StorageChooser chooser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,9 @@ public class MainActivity extends AppCompatActivity
         WebViewRenderer.prepareWebview(w);
         e = (EditText) findViewById(R.id.edit);
         fio.SetMA(this);
+
+
+
 
 
         w.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
@@ -280,6 +286,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_save:
                 OnSave();
                 return true;
+            case R.id.action_set_default_dir:
+                SetDefaultDirectory();
+                return true;
+
             case R.id.action_delete_question:
                 processFile();
                 return true;
@@ -485,4 +495,28 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    void SetDefaultDirectory()
+    {
+        // Initialize Builder
+        StorageChooser chooser = new StorageChooser.Builder()
+                .withActivity(MainActivity.this)
+                .withFragmentManager(getFragmentManager())
+                .withMemoryBar(true)
+                .allowCustomPath(true)
+                .setType(StorageChooser.DIRECTORY_CHOOSER)
+                .build();
+
+// Show dialog whenever you want by
+        chooser.show();
+
+// get path that the user has chosen
+        chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
+            @Override
+            public void onSelect(String path) {
+               show(path);
+            }
+        });
+
+
+    }
 }
