@@ -281,7 +281,8 @@ public class MainActivity extends AppCompatActivity
                 show("Settings");
                 return true;
             case R.id.action_load:
-                OnLoad();
+                 //OnLoad();
+                PickFile();
                 return true;
             case R.id.action_save:
                 OnSave();
@@ -504,6 +505,7 @@ public class MainActivity extends AppCompatActivity
                 .withMemoryBar(true)
                 .allowCustomPath(true)
                 .setType(StorageChooser.DIRECTORY_CHOOSER)
+                .allowAddFolder(true)
                 .build();
 
 // Show dialog whenever you want by
@@ -519,4 +521,39 @@ public class MainActivity extends AppCompatActivity
 
 
     }
+
+void PickFile()
+{
+
+    ArrayList<String> ext = new ArrayList<String>(); // Create an ArrayList object
+ext.add("tex");
+// Initialize Builder
+    StorageChooser chooser = new StorageChooser.Builder()
+            .withActivity(MainActivity.this)
+            .withFragmentManager(getFragmentManager())
+            .withMemoryBar(true)
+            .allowCustomPath(true)
+            .setType(StorageChooser.FILE_PICKER)
+            .customFilter(ext)
+            .build();
+
+
+
+// Show dialog whenever you want by
+    chooser.show();
+
+// get path that the user has chosen
+    chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
+        @Override
+        public void onSelect(String path) {
+            show(path);
+        }
+    });
+
+
+
+
+}
+
+
 }
