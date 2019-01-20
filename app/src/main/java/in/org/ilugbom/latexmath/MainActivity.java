@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FileChooser filechooser;
+    String FullPath="";
     EditText e;
     private WebView w;
     Button BackSlashButton;
@@ -466,7 +467,7 @@ public class MainActivity extends AppCompatActivity
     void OnLoad() {
         QN = 1;
         QnArray.removeAll(QnArray);
-        fio.OpenList("/sdcard/test.tex");
+        fio.OpenList(FullPath);
         e.setText(QnArray.get(0));
         show();
     }
@@ -546,7 +547,8 @@ ext.add("tex");
     chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
         @Override
         public void onSelect(String path) {
-            show(path);
+            FullPath=path;
+            OnLoad();
         }
     });
 
