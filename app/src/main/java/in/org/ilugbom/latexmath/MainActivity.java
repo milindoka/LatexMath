@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FileChooser filechooser;
+
     String FullPath="";
     EditText e;
     private WebView w;
@@ -474,7 +475,9 @@ public class MainActivity extends AppCompatActivity
 
 
     void OnSave() {
-        fio.SaveFile();
+          //fio.SaveFile();
+        //  fio.SaveListDialog();
+        fio.SaveFileDialog(this);
     }
 
 

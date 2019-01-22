@@ -1,7 +1,9 @@
 package in.org.ilugbom.latexmath;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+import android.widget.EditText;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,6 +23,7 @@ public class FileIO
 {
   String tempstr;
   boolean modified=false;
+    String DefaultDirectory="/sdcard/";
     MainActivity MA;
     void SetMA(MainActivity MA){this.MA=MA;}
     boolean OpenNow=false;
@@ -62,8 +65,8 @@ public class FileIO
 
 
 
-    void SaveFile()
-    {	String FileNameWithPath="/sdcard/test.tex";
+    void SaveFile(String CompletePath)
+    {	//String FileNameWithPath="/sdcard/test.tex";
         modified=false;
         String tmpStr;
         String txtData = "\n";
@@ -89,7 +92,7 @@ public class FileIO
 
 
         try {
-            File myFile = new File(FileNameWithPath);
+            File myFile = new File(CompletePath);
             myFile.createNewFile();
             FileOutputStream fOut = new FileOutputStream(myFile);
             OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
@@ -164,7 +167,24 @@ public class FileIO
     }
 
 
-
+    void SaveFileDialog(Context c) {
+        final EditText filenem = new EditText(c);
+        AlertDialog dialog = new AlertDialog.Builder(c)
+                .setTitle("Save Article")
+                .setMessage("Give File Name :")
+                .setView(filenem)
+                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String filetitle = String.valueOf(filenem.getText());
+                        String filewithpath="/sdcard/"+filetitle+".tex";
+                        SaveFile(filewithpath);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create();
+        dialog.show();
+    }
 
 
 }
