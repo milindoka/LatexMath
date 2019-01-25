@@ -25,7 +25,6 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codekidlabs.storagechooser.StorageChooser;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -283,7 +282,7 @@ public class MainActivity extends AppCompatActivity
                 show("Settings");
                 return true;
             case R.id.action_load:
-                 //OnLoad();
+
                 PickFile();
                 return true;
             case R.id.action_save:
@@ -465,10 +464,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    void OnLoad() {
+    void Load(String completepath) {
         QN = 1;
         QnArray.removeAll(QnArray);
-        fio.OpenList(FullPath);
+        fio.OpenList(completepath);
         e.setText(QnArray.get(0));
         show();
     }
@@ -483,77 +482,32 @@ public class MainActivity extends AppCompatActivity
 
 
     private void processFile(){
-        filechooser = new FileChooser(this);
-        filechooser.setFileListener(new FileChooser.FileSelectedListener() {
-            @Override
-            public void fileSelected(final File file) {
-                // ....do something with the file
-                String filename = file.getAbsolutePath();
-                //Log.d("File", filename);
-                // then actually do something in another module
-                show(filename);
-            }
-        });
-// Set up and filter my extension I am looking for
-        filechooser.setExtension("tex");
-        filechooser.showDialog();
     }
 
 
     void SetDefaultDirectory()
     {
-        // Initialize Builder
-        StorageChooser chooser = new StorageChooser.Builder()
-                .withActivity(MainActivity.this)
-                .withFragmentManager(getFragmentManager())
-                .withMemoryBar(true)
-                .allowCustomPath(true)
-                .setType(StorageChooser.DIRECTORY_CHOOSER)
-                .allowAddFolder(true)
-                .build();
 
-// Show dialog whenever you want by
-        chooser.show();
-
-// get path that the user has chosen
-        chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
-            @Override
-            public void onSelect(String path) {
-               show(path);
-            }
-        });
-
-
+show("code not added");
     }
 
 void PickFile()
-{
-
-    ArrayList<String> ext = new ArrayList<String>(); // Create an ArrayList object
-ext.add("tex");
-// Initialize Builder
-    StorageChooser chooser = new StorageChooser.Builder()
-            .withActivity(MainActivity.this)
-            .withFragmentManager(getFragmentManager())
-            .withMemoryBar(true)
-            .allowCustomPath(true)
-            .setType(StorageChooser.FILE_PICKER)
-            .customFilter(ext)
-            .build();
-
-
-
-// Show dialog whenever you want by
-    chooser.show();
-
-// get path that the user has chosen
-    chooser.setOnSelectListener(new StorageChooser.OnSelectListener() {
+{       filechooser = new FileChooser(this);
+    filechooser.setFileListener(new FileChooser.FileSelectedListener() {
         @Override
-        public void onSelect(String path) {
-            FullPath=path;
-            OnLoad();
+        public void fileSelected(final File file) {
+            // ....do something with the file
+            String filename = file.getAbsolutePath();
+            //Log.d("File", filename);
+            // then actually do something in another module
+            Load(filename);
+
         }
     });
+// Set up and filter my extension I am looking for
+    filechooser.setExtension("tex");
+    filechooser.showDialog();
+
 
 
 
