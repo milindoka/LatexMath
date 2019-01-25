@@ -2,6 +2,7 @@ package in.org.ilugbom.latexmath;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.widget.EditText;
 
@@ -13,6 +14,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by milind on 12/1/19.
@@ -155,7 +158,9 @@ public class FileIO
              myTitleText.setText(tempfname);
              showtop(tempfname);
            */
+
             MA.show("Loaded From SD Card");
+            SaveLastPath(fylenamewithpath);
         }
         catch (Exception e)
         {
@@ -184,6 +189,18 @@ public class FileIO
                 .setNegativeButton("Cancel", null)
                 .create();
         dialog.show();
+    }
+
+    void SaveLastPath(String lastpath)
+    {
+        SharedPreferences settings = MA.getSharedPreferences("LastPath", MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("key1", lastpath);
+        //  editor.putString("key2", college);
+        //  editor.putString("key3", teacher);
+        //  editor.putString("key4",subject);
+        //  editor.putString("key5", email);
+            editor.commit();
     }
 
 

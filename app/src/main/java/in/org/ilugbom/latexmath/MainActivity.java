@@ -1,12 +1,15 @@
 package in.org.ilugbom.latexmath;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompatExtras;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -56,7 +59,6 @@ public class MainActivity extends AppCompatActivity
         WebViewRenderer.prepareWebview(w);
         e = (EditText) findViewById(R.id.edit);
         fio.SetMA(this);
-
 
 
 
@@ -247,6 +249,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+ //??
+
+
+
     }
 
     @Override
@@ -321,17 +328,22 @@ public class MainActivity extends AppCompatActivity
 
         }
 
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
+        FullPath=GetLastPath();
+        show(FullPath);
 
-        fio.SetMA(this);
+        if(FullPath.length()>0) Load(FullPath);
+
 
         return true;
     }  ///end of oncreate bundle
 
 
-    private void show() {
+     void show() {
         //WebViewRenderer.renderLatex(w,"\\int (\\sin x dx");
         WebViewRenderer.renderLatex(w, e.getText().toString());
     }
@@ -469,7 +481,7 @@ public class MainActivity extends AppCompatActivity
         QnArray.removeAll(QnArray);
         fio.OpenList(completepath);
         e.setText(QnArray.get(0));
-        show();
+
     }
 
 
@@ -507,11 +519,52 @@ void PickFile()
 // Set up and filter my extension I am looking for
     filechooser.setExtension("tex");
     filechooser.showDialog();
+}
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+       // WebView w1 = (WebView) findViewById(R.id.webview);
+       // WebViewRenderer.prepareWebview(w1);
+       // EditText e1 = (EditText) findViewById(R.id.edit);
 
 
+        FullPath=GetLastPath();
+        show(FullPath);
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SystemClock.sleep(4000); // Sleep 4 seconds
+                // Now change the color back. Needs to be done on the UI thread
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(FullPath.length()>0) Load(FullPath);
+                        show();
+                    }
+                });
+            }
+        }).start();
+
+
+        //Push("ABC ");
+
+
+       // WebViewRenderer.renderLatex(w1, e1.getText().toString());
+    }
+
+
+    String GetLastPath()
+{  SharedPreferences settings = MainActivity.this.getSharedPreferences("LastPath", MODE_PRIVATE);
+    String lastpath = settings.getString("key1", "");
+    //college = settings.getString("key2", "School/College");
+    //teacher = settings.getString("key3", "Name");
+    //subject=settings.getString("key4","Subject");
+    //email = settings.getString("key5", "Email");
+   return lastpath;
 }
 
 
