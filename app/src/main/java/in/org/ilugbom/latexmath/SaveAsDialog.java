@@ -12,16 +12,21 @@ Thanks to Roger
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.ColorSpace;
 import android.os.Environment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
@@ -34,8 +39,10 @@ public class SaveAsDialog {
     private Dialog dialog;
     private File currentPath;
 
+
     private EditText etfnem;
     private LinearLayout ll;
+    private Button SevButton;
 
     // filter on file extension
     private String extension = null;
@@ -54,11 +61,18 @@ public class SaveAsDialog {
     }
     private FileSelectedListener fileListener;
 
-    public SaveAsDialog(Activity activity) {
+    public SaveAsDialog(final Activity activity) {
         this.activity = activity;
         dialog = new Dialog(activity);
         list = new ListView(activity);
         etfnem=new EditText(activity);
+        etfnem.setBackgroundColor(Color.YELLOW);
+
+        SevButton=new Button(activity);
+        SevButton.setText("Save");
+
+
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override public void onItemClick(AdapterView<?> parent, View view, int which, long id) {
                 String fileChosen = (String) list.getItemAtPosition(which);
@@ -73,6 +87,20 @@ public class SaveAsDialog {
                 }
             }
         });
+
+
+
+        SevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+                Toast.makeText(activity,"You Clicked : ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
         ll = new LinearLayout(activity);
         ll.setOrientation(LinearLayout.VERTICAL);
         ll.addView(list);
@@ -83,7 +111,12 @@ public class SaveAsDialog {
         le.weight=0f;
         etfnem.setLayoutParams(le);
 
+        LinearLayout.LayoutParams lb = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        lb.weight=0f;
+        SevButton.setLayoutParams(lb);
+
         ll.addView(etfnem);
+        ll.addView(SevButton);
         dialog.setContentView(ll);
        dialog.getWindow().setLayout(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
         refresh(Environment.getExternalStorageDirectory());
