@@ -95,7 +95,7 @@ public class SaveAsDialog {
             public void onClick(View v)
             {
 
-                Toast.makeText(activity,"You Clicked : ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity,currentPath.getPath(), Toast.LENGTH_SHORT).show();
             }
         });
 

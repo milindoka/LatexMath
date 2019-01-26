@@ -75,8 +75,10 @@ public class FileChooser {
         refresh(Environment.getExternalStorageDirectory());
     }
 
-    public void showDialog() {
+    public void showDialog()
+    {
         dialog.show();
+        refresh(Environment.getExternalStorageDirectory());
     }
 
 
@@ -97,7 +99,7 @@ public class FileChooser {
                         if (!file.canRead()) {
                             return false;
                         } else if (extension == null) {
-                            return true;
+                            return false;
                         } else {
                             return file.getName().toLowerCase().endsWith(extension);
                         }

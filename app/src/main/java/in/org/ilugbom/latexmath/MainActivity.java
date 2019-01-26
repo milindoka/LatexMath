@@ -495,6 +495,7 @@ public class MainActivity extends AppCompatActivity
 
     private void processFile()
     {sad = new SaveAsDialog(this);
+        sad.setExtension(".tex");
         sad.setFileListener(new SaveAsDialog.FileSelectedListener() {
             @Override
             public void fileSelected(final File file) {
@@ -507,7 +508,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 // Set up and filter my extension I am looking for
-        sad.setExtension("tex");
+
         sad.showDialog();
 
     }
@@ -521,6 +522,7 @@ show("code not added");
 
 void PickFile()
 {       filechooser = new FileChooser(this);
+    filechooser.setExtension(".tex");
     filechooser.setFileListener(new FileChooser.FileSelectedListener() {
         @Override
         public void fileSelected(final File file) {
@@ -533,7 +535,7 @@ void PickFile()
         }
     });
 // Set up and filter my extension I am looking for
-    filechooser.setExtension("tex");
+
     filechooser.showDialog();
 }
 
