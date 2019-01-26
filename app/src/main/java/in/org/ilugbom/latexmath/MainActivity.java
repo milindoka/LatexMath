@@ -293,14 +293,15 @@ public class MainActivity extends AppCompatActivity
                 PickFile();
                 return true;
             case R.id.action_save:
-                OnSave();
+                //OnSave();
+                processFile();
                 return true;
             case R.id.action_set_default_dir:
                 SetDefaultDirectory();
                 return true;
 
             case R.id.action_delete_question:
-                processFile();
+
                 return true;
         }
         //noinspection SimplifiableIfStatement
@@ -503,7 +504,8 @@ public class MainActivity extends AppCompatActivity
                 String filename = file.getAbsolutePath();
                 //Log.d("File", filename);
                 // then actually do something in another module
-                Load(filename);
+                //Load(filename);
+                show(filename);
 
             }
         });

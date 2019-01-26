@@ -79,12 +79,14 @@ public class SaveAsDialog {
                 File chosenFile = getChosenFile(fileChosen);
                 if (chosenFile.isDirectory()) {
                     refresh(chosenFile);
-                } else {
+                }
+                /*
+                else {
                     if (fileListener != null) {
                         fileListener.fileSelected(chosenFile);
                     }
                     dialog.dismiss();
-                }
+                }*/
             }
         });
 
@@ -95,7 +97,13 @@ public class SaveAsDialog {
             public void onClick(View v)
             {
 
-                Toast.makeText(activity,currentPath.getPath(), Toast.LENGTH_SHORT).show();
+                    if (fileListener != null) {
+
+                       File fff=new  File(currentPath,etfnem.getText()+".tex" );
+                        fileListener.fileSelected(fff);
+                    }
+                    dialog.dismiss();
+               // Toast.makeText(activity,currentPath.getPath()+"/"+etfnem.getText()+".tex".toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -122,8 +130,10 @@ public class SaveAsDialog {
         refresh(Environment.getExternalStorageDirectory());
     }
 
-    public void showDialog() {
+    public void showDialog()
+    {
         dialog.show();
+        refresh(Environment.getExternalStorageDirectory());
     }
 
 
@@ -144,9 +154,9 @@ public class SaveAsDialog {
                         if (!file.canRead()) {
                             return false;
                         } else if (extension == null) {
-                            return true;
+                            return false;
                         } else {
-                            return file.getName().toLowerCase().endsWith(extension);
+                            return false; ///no files in directory dialog
                         }
                     } else {
                         return false;
