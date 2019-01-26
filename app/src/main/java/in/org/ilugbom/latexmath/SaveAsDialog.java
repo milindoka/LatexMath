@@ -73,9 +73,19 @@ public class SaveAsDialog {
                 }
             }
         });
-        dialog.setContentView(list);
-        dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-        refresh(Environment.getExternalStorageDirectory()); // dialog.getWindow().setLayout(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
+        ll = new LinearLayout(activity);
+        ll.setOrientation(LinearLayout.VERTICAL);
+        ll.addView(list);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        lp.weight=5f;
+        list.setLayoutParams(lp);
+        LinearLayout.LayoutParams le = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        le.weight=0f;
+        etfnem.setLayoutParams(le);
+
+        ll.addView(etfnem);
+        dialog.setContentView(ll);
+       dialog.getWindow().setLayout(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
         refresh(Environment.getExternalStorageDirectory());
     }
 
