@@ -1,3 +1,5 @@
+package in.org.ilugbom.latexmath;
+
 /*
 This simple and nice single java class file chooser is by Roger Keays.
 Taken from his blog :
@@ -6,12 +8,7 @@ https://rogerkeays.com/simple-android-file-chooser
 
 Thanks to Roger
 
-
 */
-
-
-package in.org.ilugbom.latexmath;
-
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -21,19 +18,24 @@ import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
 
-public class FileChooser {
+public class SaveAsDialog {
     private static final String PARENT_DIR = "..";
 
     private final Activity activity;
     private ListView list;
     private Dialog dialog;
     private File currentPath;
+
+    private EditText etfnem;
+    private LinearLayout ll;
 
     // filter on file extension
     private String extension = null;
@@ -46,16 +48,17 @@ public class FileChooser {
     public interface FileSelectedListener {
         void fileSelected(File file);
     }
-    public FileChooser setFileListener(FileSelectedListener fileListener) {
+    public SaveAsDialog setFileListener(FileSelectedListener fileListener) {
         this.fileListener = fileListener;
         return this;
     }
     private FileSelectedListener fileListener;
 
-    public FileChooser(Activity activity) {
+    public SaveAsDialog(Activity activity) {
         this.activity = activity;
         dialog = new Dialog(activity);
         list = new ListView(activity);
+        etfnem=new EditText(activity);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override public void onItemClick(AdapterView<?> parent, View view, int which, long id) {
                 String fileChosen = (String) list.getItemAtPosition(which);
@@ -72,6 +75,7 @@ public class FileChooser {
         });
         dialog.setContentView(list);
         dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+        refresh(Environment.getExternalStorageDirectory()); // dialog.getWindow().setLayout(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
         refresh(Environment.getExternalStorageDirectory());
     }
 

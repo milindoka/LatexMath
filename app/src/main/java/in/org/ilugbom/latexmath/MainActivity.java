@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     FileChooser filechooser;
-
+    SaveAsDialog sad;
     String FullPath="";
     EditText e;
     private WebView w;
@@ -493,7 +493,23 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private void processFile(){
+    private void processFile()
+    {sad = new SaveAsDialog(this);
+        sad.setFileListener(new SaveAsDialog.FileSelectedListener() {
+            @Override
+            public void fileSelected(final File file) {
+                // ....do something with the file
+                String filename = file.getAbsolutePath();
+                //Log.d("File", filename);
+                // then actually do something in another module
+                Load(filename);
+
+            }
+        });
+// Set up and filter my extension I am looking for
+        sad.setExtension("tex");
+        sad.showDialog();
+
     }
 
 
