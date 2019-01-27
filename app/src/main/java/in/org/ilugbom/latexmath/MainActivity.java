@@ -285,8 +285,8 @@ public class MainActivity extends AppCompatActivity
 
 
         switch (id) {
-            case R.id.action_settings:
-                show("Settings");
+            case R.id.action_new:
+                OnNew();
                 return true;
             case R.id.action_load:
 
@@ -294,14 +294,19 @@ public class MainActivity extends AppCompatActivity
                 return true;
             case R.id.action_save:
                 //OnSave();
-                processFile();
+                //processFile();
                 return true;
-            case R.id.action_set_default_dir:
-                SetDefaultDirectory();
+            case R.id.action_save_as:
+                //OnSave();
+                SaveAs();
                 return true;
 
             case R.id.action_delete_question:
 
+                return true;
+
+            case R.id.action_settings:
+                show("Settings");
                 return true;
         }
         //noinspection SimplifiableIfStatement
@@ -341,7 +346,7 @@ public class MainActivity extends AppCompatActivity
 
 
         return true;
-    }  ///end of oncreate bundle
+    }  ///////////////////   end of oncreate bundle ////////////////////////////
 
 
      void show() {
@@ -494,7 +499,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    private void processFile()
+    private void SaveAs()
     {sad = new SaveAsDialog(this);
         sad.setExtension(".tex");
         sad.setFileListener(new SaveAsDialog.FileSelectedListener() {
@@ -502,25 +507,15 @@ public class MainActivity extends AppCompatActivity
             public void fileSelected(final File file) {
                 // ....do something with the file
                 String filename = file.getAbsolutePath();
-                //Log.d("File", filename);
-                // then actually do something in another module
-                //Load(filename);
                 show(filename);
 
             }
         });
-// Set up and filter my extension I am looking for
 
         sad.showDialog();
-
     }
 
 
-    void SetDefaultDirectory()
-    {
-
-show("code not added");
-    }
 
 void PickFile()
 {       filechooser = new FileChooser(this);
@@ -543,13 +538,8 @@ void PickFile()
 
 
     @Override
-    protected void onStart() {
+    protected void onStart() {   ///////Get Last File Path from pref & Load Last File
         super.onStart();
-
-       // WebView w1 = (WebView) findViewById(R.id.webview);
-       // WebViewRenderer.prepareWebview(w1);
-       // EditText e1 = (EditText) findViewById(R.id.edit);
-
 
         FullPath=GetLastPath();
         show(FullPath);
@@ -568,12 +558,6 @@ void PickFile()
                 });
             }
         }).start();
-
-
-        //Push("ABC ");
-
-
-       // WebViewRenderer.renderLatex(w1, e1.getText().toString());
     }
 
 
@@ -586,6 +570,12 @@ void PickFile()
     //email = settings.getString("key5", "Email");
    return lastpath;
 }
+
+void OnNew()
+{
+show("new");
+}
+
 
 
 }

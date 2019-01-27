@@ -118,7 +118,7 @@ public class SaveAsDialog {
         LinearLayout.LayoutParams le = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         le.weight=0f;
         etfnem.setLayoutParams(le);
-
+        etfnem.requestFocus();
         LinearLayout.LayoutParams lb = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         lb.weight=0f;
         SevButton.setLayoutParams(lb);

@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_new"
+        android:orderInCategory="80"
+        android:title="New"
+        app:showAsAction="never" />
+
+
+    <item
         android:id="@+id/action_load"
         android:orderInCategory="100"
         android:title="@string/action_load"
@@ -11,21 +18,20 @@
     <item
         android:id="@+id/action_save"
         android:orderInCategory="200"
-        android:title="@string/action_save"
+        android:title="Save"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_save_as"
+        android:orderInCategory="300"
+        android:title="Save As"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_delete_question"
-        android:orderInCategory="300"
+        android:orderInCategory="400"
         android:title="Delete Question"
         app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_set_default_dir"
-        android:orderInCategory="400"
-        android:title="Set Default Dir"
-        app:showAsAction="never" />
-
 
     <item
         android:id="@+id/action_settings"
