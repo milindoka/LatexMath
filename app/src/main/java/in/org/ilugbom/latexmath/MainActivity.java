@@ -498,7 +498,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     private void SaveAs()
     {sad = new SaveAsDialog(this);
         sad.setExtension(".tex");
@@ -508,6 +507,7 @@ public class MainActivity extends AppCompatActivity
                 // ....do something with the file
                 String filename = file.getAbsolutePath();
                 show(filename);
+                fio.SaveFile(filename);
 
             }
         });
