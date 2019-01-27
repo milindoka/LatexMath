@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompatExtras;
+import android.text.Editable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -83,6 +84,23 @@ public class MainActivity extends AppCompatActivity
 
         });
 
+        final Button backspaceButton = (Button) findViewById(R.id.buttonBackspace);
+        backspaceButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {  // int length = e.getText().length();
+               // if (length > 0) {
+               //     e.getText().delete(length - 1, length);
+               // }
+
+                Editable editable = e.getText();
+                int charCount = e.getSelectionEnd();
+                if (charCount > 0) {
+                    editable.delete(charCount - 1, charCount);
+                }
+
+                show();
+            }
+        });
 
         final Button showButton = (Button) findViewById(R.id.buttonShow);
         showButton.setOnClickListener(new View.OnClickListener() {
@@ -100,27 +118,33 @@ public class MainActivity extends AppCompatActivity
         });
         final Button equalButton = (Button) findViewById(R.id.buttonEqual);
         equalButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Push("=");
+            public void onClick(View v)
+            {
+                Push("="); show();
             }
         });
         final Button plusButton = (Button) findViewById(R.id.buttonPlus);
         plusButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Push("+");
+            public void onClick(View v)
+            {   Push("+");show();
+                show();
             }
         });
         final Button minusButton = (Button) findViewById(R.id.buttonMinus);
         minusButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Push("-");
+            public void onClick(View v)
+            {   Push("-");
+                show();
             }
         });
 
         final Button caretButton = (Button) findViewById(R.id.buttonCaret);
         caretButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Push("^");
+            public void onClick(View v)
+            {
+                Push("^{2}");
+                e.setSelection(e.getSelectionStart() - 2);
+                show();
             }
         });
 
@@ -139,13 +163,29 @@ public class MainActivity extends AppCompatActivity
         });
 
 //////Second Button Bar
+        final Button clearButton = (Button) findViewById(R.id.buttonClear);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                e.setText("");
+                show();
+            }
+        });
 
+        final Button frButton = (Button) findViewById(R.id.buttonFr);
+        frButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Push("\\frac{3}{4}");
+                e.setSelection(e.getSelectionStart() - 4);
+                show();
+            }
+        });
 
         final Button bracketButton = (Button) findViewById(R.id.buttonBracket);
         bracketButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Push("\\left( \\right)");
                 e.setSelection(e.getSelectionStart() - 7);
+                show();
             }
         });
 
@@ -153,7 +193,7 @@ public class MainActivity extends AppCompatActivity
         trigButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Push("\\sin ");
-
+                show();
             }
         });
 

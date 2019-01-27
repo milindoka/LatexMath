@@ -37,6 +37,13 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/buttonBackspace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:text=" BS "/>
+
+        <Button
             android:id="@+id/buttonShow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,35 +61,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="0dp"
-            android:text="   =   " />
+            android:text="  =  " />
 
         <Button
             android:id="@+id/buttonPlus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="0dp"
-            android:text="   +   " />
+            android:text="  +  " />
 
         <Button
             android:id="@+id/buttonMinus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="0dp"
-            android:text="   -   " />
+            android:text="  -  " />
 
         <Button
             android:id="@+id/buttonCaret"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="0dp"
-            android:text="   ^   " />
+            android:text="  ^  " />
 
         <Button
             android:id="@+id/buttoncurlyleft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="0dp"
-            android:text="   {   " />
+            android:text="  {  " />
 
         <Button
             android:id="@+id/buttonCurlyright"
@@ -98,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="0dp"
-            android:text="   _   " />
+            android:text="  _  " />
     </LinearLayout>
     </HorizontalScrollView>
 
@@ -115,11 +122,28 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/buttonClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:text=" X " />
+
+            <Button
+                android:id="@+id/buttonFr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:text=" F " />
+
+
+
+            <Button
                 android:id="@+id/buttonBracket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"
                 android:text="( )" />
+
 
             <Button
                 android:id="@+id/buttonTrig"
@@ -127,6 +151,9 @@
                 android:minWidth="0dp"
                 android:layout_height="wrap_content"
                 android:text="Trig" />
+
+
+
             <Button
                 android:id="@+id/buttonMatrix"
                 android:layout_width="wrap_content"
