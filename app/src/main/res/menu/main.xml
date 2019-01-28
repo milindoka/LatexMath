@@ -16,6 +16,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_load_last"
+        android:orderInCategory="150"
+        android:title="Load Last File"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/action_save"
         android:orderInCategory="200"
         android:title="Save"

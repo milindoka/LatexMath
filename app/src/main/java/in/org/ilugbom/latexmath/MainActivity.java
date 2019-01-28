@@ -331,9 +331,13 @@ public class MainActivity extends AppCompatActivity
                 OnNew();
                 return true;
             case R.id.action_load:
-
                 PickFile();
                 return true;
+
+            case R.id.action_load_last:
+                OnLoadLastFile();
+                return true;
+
             case R.id.action_save:
                 //OnSave();
                 //processFile();
@@ -380,15 +384,19 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
-        FullPath=GetLastPath();
-        show(FullPath);
-
-        if(FullPath.length()>0) Load(FullPath);
 
 
         return true;
     }  ///////////////////   end of oncreate bundle ////////////////////////////
 
+
+    void OnLoadLastFile()
+    {   FullPath=GetLastPath();
+        show(FullPath);
+        if(FullPath.length()>0) Load(FullPath);
+        show();
+
+    }
 
      void show() {
         //WebViewRenderer.renderLatex(w,"\\int (\\sin x dx");
@@ -577,7 +585,7 @@ void PickFile()
     filechooser.showDialog();
 }
 
-
+/*
     @Override
     protected void onStart() {   ///////Get Last File Path from pref & Load Last File
         super.onStart();
@@ -600,7 +608,7 @@ void PickFile()
             }
         }).start();
     }
-
+*/
 
     String GetLastPath()
 {  SharedPreferences settings = MainActivity.this.getSharedPreferences("LastPath", MODE_PRIVATE);
