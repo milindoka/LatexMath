@@ -90,6 +90,26 @@ public class MainActivity extends AppCompatActivity
         b1.setOnClickListener(Listener); // calling onClick() method
         Button b2 = (Button) findViewById(R.id.bn2);
         b2.setOnClickListener(Listener);
+        Button b3 = (Button) findViewById(R.id.bn3);
+        b3.setOnClickListener(Listener); // calling onClick() method
+        Button b4 = (Button) findViewById(R.id.bn4);
+        b4.setOnClickListener(Listener);
+        Button b5 = (Button) findViewById(R.id.bn5);
+        b5.setOnClickListener(Listener); // calling onClick() method
+        Button b6 = (Button) findViewById(R.id.bn6);
+        b6.setOnClickListener(Listener);
+        Button b7 = (Button) findViewById(R.id.bn7);
+        b7.setOnClickListener(Listener); // calling onClick() method
+        Button b8 = (Button) findViewById(R.id.bn8);
+        b8.setOnClickListener(Listener);
+        Button b9 = (Button) findViewById(R.id.bn9);
+        b9.setOnClickListener(Listener); // calling onClick() method
+        Button b0 = (Button) findViewById(R.id.bn0);
+        b0.setOnClickListener(Listener);
+
+
+
+
 
 
         final Button backspaceButton = (Button) findViewById(R.id.buttonBackspace);
@@ -632,10 +652,22 @@ View.OnClickListener Listener = new View.OnClickListener()
         @Override
         public void onClick(View v) {
 
-              if (v.getId() == R.id.bn1)
+            switch(v.getId())
             {
-              show("1");
+                case R.id.bn1 : Push("1");break;
+                case R.id.bn2 : Push("2");break;
+                case R.id.bn3 : Push("3");break;
+                case R.id.bn4 : Push("4");break;
+                case R.id.bn5 : Push("5");break;
+                case R.id.bn6 : Push("6");break;
+                case R.id.bn7 : Push("7");break;
+                case R.id.bn8 : Push("8");break;
+                case R.id.bn9 : Push("9");break;
+                case R.id.bn0 : Push("0");break;
+
             }
+            show();
+
 
         }
 
