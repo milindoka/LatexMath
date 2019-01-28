@@ -84,20 +84,22 @@ public class MainActivity extends AppCompatActivity
 
         });
 
+
+
+        Button b1 = (Button) findViewById(R.id.bn1);
+        b1.setOnClickListener(Listener); // calling onClick() method
+        Button b2 = (Button) findViewById(R.id.bn2);
+        b2.setOnClickListener(Listener);
+
+
         final Button backspaceButton = (Button) findViewById(R.id.buttonBackspace);
         backspaceButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
-            {  // int length = e.getText().length();
-               // if (length > 0) {
-               //     e.getText().delete(length - 1, length);
-               // }
-
-                Editable editable = e.getText();
+            {   Editable editable = e.getText();
                 int charCount = e.getSelectionEnd();
                 if (charCount > 0) {
                     editable.delete(charCount - 1, charCount);
                 }
-
                 show();
             }
         });
@@ -375,7 +377,6 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
@@ -615,6 +616,24 @@ void OnNew()
 {
 show("new");
 }
+
+
+
+View.OnClickListener Listener = new View.OnClickListener()
+{
+        @Override
+        public void onClick(View v) {
+
+              if (v.getId() == R.id.bn1)
+            {
+              show("1");
+            }
+
+        }
+
+};
+
+
 
 
 
