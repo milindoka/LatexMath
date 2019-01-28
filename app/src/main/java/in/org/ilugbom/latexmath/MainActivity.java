@@ -108,6 +108,13 @@ public class MainActivity extends AppCompatActivity
         b0.setOnClickListener(Listener);
 
 
+        Button bx = (Button) findViewById(R.id.bnx);
+        bx.setOnClickListener(Listener);
+        Button by = (Button) findViewById(R.id.bny);
+        by.setOnClickListener(Listener);
+        Button bz = (Button) findViewById(R.id.bnz);
+        bz.setOnClickListener(Listener);
+
 
 
 
@@ -664,6 +671,9 @@ View.OnClickListener Listener = new View.OnClickListener()
                 case R.id.bn8 : Push("8");break;
                 case R.id.bn9 : Push("9");break;
                 case R.id.bn0 : Push("0");break;
+                case R.id.bnx : Push("x");break;
+                case R.id.bny : Push("y");break;
+                case R.id.bnz : Push("z");break;
 
             }
             show();

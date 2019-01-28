@@ -225,6 +225,28 @@
                 android:minWidth="0dp"
                 android:text="( )" />
 
+            <Button
+                android:id="@+id/bnx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:text=" x " />
+            <Button
+                android:id="@+id/bny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:text=" y " />
+
+
+
+            <Button
+                android:id="@+id/bnz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="0dp"
+                android:text=" z " />
+
 
             <Button
                 android:id="@+id/buttonTrig"
