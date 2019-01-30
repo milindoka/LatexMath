@@ -10,20 +10,14 @@
     tools:showIn="@layout/app_bar_main">
 
 
-    <EditText
-        android:id="@+id/edit"
+    <WebView
+        android:id="@+id/webview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:gravity="top"
-        android:hint="@string/entertex"
-        android:inputType="textMultiLine"
-        android:lines="5"
-        android:maxLines="10"
-        android:minLines="1"
-        android:nextFocusDown="@+id/editnotes"
-        android:scrollbars="none"
-        android:textSize="20dp" />
+        android:layout_weight="1" >
+
+    </WebView>
+
 
     <LinearLayout
         android:id="@+id/layout"
@@ -275,12 +269,21 @@
 
     </HorizontalScrollView>
 
-    <WebView
-        android:id="@+id/webview"
+
+    <EditText
+        android:id="@+id/edit"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" >
+        android:layout_weight="0"
+        android:gravity="top"
+        android:hint="@string/entertex"
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:maxLines="10"
+        android:minLines="1"
+        android:nextFocusDown="@+id/editnotes"
+        android:scrollbars="none"
+        android:textSize="20dp" />
 
-    </WebView>
 
 </LinearLayout>

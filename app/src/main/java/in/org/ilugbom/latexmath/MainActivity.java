@@ -1,5 +1,6 @@
 package in.org.ilugbom.latexmath;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -22,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.*;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton fab;
     private TextView FC; ///to set tex on fab
     boolean QnMode = true;
+    boolean showsoftkeyboard=false;
     //StorageChooser chooser;
 
     @Override
@@ -60,7 +63,7 @@ public class MainActivity extends AppCompatActivity
         WebViewRenderer.prepareWebview(w);
         e = (EditText) findViewById(R.id.edit);
         fio.SetMA(this);
-
+        e.setShowSoftInputOnFocus(false);
 
 
 
@@ -134,15 +137,27 @@ public class MainActivity extends AppCompatActivity
         final Button showButton = (Button) findViewById(R.id.buttonShow);
         showButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                show();
+                showsoftkeyboard=!showsoftkeyboard;
+                if(showsoftkeyboard)
+
+                { InputMethodManager imm = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                  imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                }
+                else
+                { InputMethodManager imm = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                   imm.hideSoftInputFromWindow(e.getWindowToken(), 0);
+                }
+                        //show();
             }
         });
 
         BackSlashButton = (Button) findViewById(R.id.buttonBackslah);
         BackSlashButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Push("\\");
-                ShowPopupMenu();
+                Push("\\\\\n");
+                //ShowPopupMenu();
             }
         });
         final Button equalButton = (Button) findViewById(R.id.buttonEqual);
